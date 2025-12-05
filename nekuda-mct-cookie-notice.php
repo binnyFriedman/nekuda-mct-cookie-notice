@@ -14,9 +14,15 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Define version constant from plugin header (single source of truth)
+if (!function_exists('get_plugin_data')) {
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+define('NEKUDA_MCT_COOKIE_VERSION', get_plugin_data(__FILE__)['Version']);
+
 class Nekuda_MCT_Cookie_Notice {
 
-    const VERSION = '1.0.0';
+    const VERSION = NEKUDA_MCT_COOKIE_VERSION;
     const COOKIE_NAME = 'nekuda_mct_cookie_consent';
     const OPTION_PREFIX = 'nekuda_mct_cookie_';
 

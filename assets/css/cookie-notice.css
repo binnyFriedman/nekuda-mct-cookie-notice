@@ -27,17 +27,17 @@
     inset-inline-end: 0;
     z-index: 2147483647;
     background-color: var(--nekuda-cookie-bg);
-    padding-block: 1rem;
-    padding-inline: 1.5rem;
+    padding-block: 16px;
+    padding-inline: 24px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nekuda-mct-cookie-banner__content {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 16px;
     max-width: 90vw;
     margin-inline: auto;
 }
@@ -45,9 +45,9 @@
 .nekuda-mct-cookie-banner__message {
     margin: 0;
     color: var(--nekuda-cookie-text);
-    font-size: 0.9375rem;
+    font-size: 15px;
     line-height: 1.5;
-    text-align: center;
+    text-align: start;
 }
 
 .nekuda-mct-cookie-banner__link {
@@ -55,7 +55,7 @@
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: opacity 0.2s ease;
-    margin-inline-start: 0.25em;
+    margin-inline-start: 4px;
 }
 
 .nekuda-mct-cookie-banner__link:hover,
@@ -66,13 +66,13 @@
 
 .nekuda-mct-cookie-banner__close {
     flex-shrink: 0;
-    padding-block: 0.5rem;
-    padding-inline: 1.25rem;
+    padding-block: 8px;
+    padding-inline: 20px;
     background-color: var(--nekuda-cookie-btn-bg);
     color: var(--nekuda-cookie-btn-text);
     border: 1px solid var(--nekuda-cookie-btn-border);
     border-radius: 4px;
-    font-size: 0.875rem;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease, opacity 0.2s ease;
@@ -96,20 +96,19 @@
 /* Mobile adjustments */
 @media (max-width: 600px) {
     .nekuda-mct-cookie-banner {
-        padding-block: 0.875rem;
-        padding-inline: 1rem;
+        padding-block: 14px;
+        padding-inline: 16px;
     }
 
     .nekuda-mct-cookie-banner__content {
-        flex-direction: column;
-        gap: 0.75rem;
+        gap: 12px;
     }
 
     .nekuda-mct-cookie-banner__message {
-        font-size: 0.875rem;
+        font-size: 14px;
     }
 
     .nekuda-mct-cookie-banner__close {
-        padding-block: 0.625rem;
+        padding-block: 10px;
     }
 }
