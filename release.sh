@@ -107,14 +107,18 @@ update_changelog() {
 
     echo -e "${YELLOW}Updating changelog...${NC}"
 
-    # Insert new changelog entry after "== Changelog ==" line
+    # Write changelog entry to temp file (handles newlines properly)
+    local entry_file=$(mktemp)
     local temp_file=$(mktemp)
-    awk -v entry="$changelog_entry" '
+    echo -e "$changelog_entry" > "$entry_file"
+
+    # Insert new changelog entry after "== Changelog ==" line
+    awk '
         /^== Changelog ==/ {
             print
             getline
             print
-            print entry
+            while ((getline line < "'"$entry_file"'") > 0) print line
             print ""
             next
         }
@@ -122,6 +126,7 @@ update_changelog() {
     ' "$README_FILE" > "$temp_file"
 
     mv "$temp_file" "$README_FILE"
+    rm -f "$entry_file"
 
     echo -e "${GREEN}Changelog updated${NC}"
 }

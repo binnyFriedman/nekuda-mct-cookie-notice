@@ -3,7 +3,7 @@
  * Plugin Name: Nekuda MCT Cookie Notice
  * Plugin URI: https://nekuda.dev
  * Description: A simple, elegant cookie consent banner with customizable text via options.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Nekuda
  * Author URI: https://nekuda.dev
  * Text Domain: nekuda-mct-cookie-notice
