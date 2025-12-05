@@ -1,0 +1,114 @@
+/**
+ * Nekuda MCT Cookie Notice Styles
+ *
+ * CSS Variables available for theme customization:
+ * --nekuda-cookie-bg: Background color
+ * --nekuda-cookie-text: Text color
+ * --nekuda-cookie-link: Link color
+ * --nekuda-cookie-btn-bg: Button background
+ * --nekuda-cookie-btn-text: Button text color
+ * --nekuda-cookie-btn-border: Button border color
+ */
+
+:root {
+    --nekuda-cookie-bg: #1a1a1a;
+    --nekuda-cookie-text: rgba(255, 255, 255, 0.95);
+    --nekuda-cookie-link: rgba(255, 255, 255, 0.95);
+    --nekuda-cookie-btn-bg: transparent;
+    --nekuda-cookie-btn-text: rgba(255, 255, 255, 0.95);
+    --nekuda-cookie-btn-border: rgba(255, 255, 255, 0.95);
+}
+
+.nekuda-mct-cookie-banner {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    z-index: 999999;
+    background-color: var(--nekuda-cookie-bg);
+    padding-block: 1rem;
+    padding-inline: 1.5rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nekuda-mct-cookie-banner__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+.nekuda-mct-cookie-banner__message {
+    margin: 0;
+    color: var(--nekuda-cookie-text);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.nekuda-mct-cookie-banner__link {
+    color: var(--nekuda-cookie-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+    margin-inline-start: 0.25em;
+}
+
+.nekuda-mct-cookie-banner__link:hover,
+.nekuda-mct-cookie-banner__link:focus {
+    opacity: 0.8;
+}
+
+.nekuda-mct-cookie-banner__close {
+    flex-shrink: 0;
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: var(--nekuda-cookie-btn-bg);
+    color: var(--nekuda-cookie-btn-text);
+    border: 1px solid var(--nekuda-cookie-btn-border);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.nekuda-mct-cookie-banner__close:hover,
+.nekuda-mct-cookie-banner__close:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nekuda-mct-cookie-banner__close:focus {
+    outline: 2px solid var(--nekuda-cookie-btn-border);
+    outline-offset: 2px;
+}
+
+/* Hide banner with class */
+.nekuda-mct-cookie-banner--hidden {
+    display: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .nekuda-mct-cookie-banner {
+        padding-block: 0.875rem;
+        padding-inline: 1rem;
+    }
+
+    .nekuda-mct-cookie-banner__content {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .nekuda-mct-cookie-banner__message {
+        font-size: 0.875rem;
+    }
+
+    .nekuda-mct-cookie-banner__close {
+        width: 100%;
+        padding-block: 0.625rem;
+    }
+}
