@@ -12,11 +12,12 @@
 
 :root {
     --nekuda-cookie-bg: #1a1a1a;
-    --nekuda-cookie-text: rgba(255, 255, 255, 0.95);
-    --nekuda-cookie-link: rgba(255, 255, 255, 0.95);
+    --nekuda-cookie-text: #f2f2f2;
+    --nekuda-cookie-link: #f2f2f2;
     --nekuda-cookie-btn-bg: transparent;
-    --nekuda-cookie-btn-text: rgba(255, 255, 255, 0.95);
-    --nekuda-cookie-btn-border: rgba(255, 255, 255, 0.95);
+    --nekuda-cookie-btn-text: #f2f2f2;
+    --nekuda-cookie-btn-border: #f2f2f2;
+    --nekuda-cookie-btn-hover-bg: rgba(255, 255, 255, 0.1);
 }
 
 .nekuda-mct-cookie-banner {
@@ -24,7 +25,7 @@
     inset-block-end: 0;
     inset-inline-start: 0;
     inset-inline-end: 0;
-    z-index: 999999;
+    z-index: 2147483647;
     background-color: var(--nekuda-cookie-bg);
     padding-block: 1rem;
     padding-inline: 1.5rem;
@@ -35,9 +36,9 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1rem;
-    max-width: 1200px;
+    max-width: 90vw;
     margin-inline: auto;
 }
 
@@ -60,6 +61,7 @@
 .nekuda-mct-cookie-banner__link:hover,
 .nekuda-mct-cookie-banner__link:focus {
     opacity: 0.8;
+    color: var(--nekuda-cookie-link);
 }
 
 .nekuda-mct-cookie-banner__close {
@@ -78,7 +80,7 @@
 
 .nekuda-mct-cookie-banner__close:hover,
 .nekuda-mct-cookie-banner__close:focus {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--nekuda-cookie-btn-hover-bg);
 }
 
 .nekuda-mct-cookie-banner__close:focus {
@@ -108,7 +110,6 @@
     }
 
     .nekuda-mct-cookie-banner__close {
-        width: 100%;
         padding-block: 0.625rem;
     }
 }
