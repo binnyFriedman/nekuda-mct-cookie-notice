@@ -168,6 +168,42 @@ create_zip() {
     echo -e "${GREEN}Created: dist/$zip_name${NC}"
 }
 
+# Commit changes and create git tag
+git_commit_and_tag() {
+    local version=$1
+
+    echo -e "${YELLOW}Committing changes...${NC}"
+
+    cd "$PLUGIN_DIR"
+    git add -A
+    git commit -m "Release $version"
+    git tag "v$version"
+
+    echo -e "${GREEN}Created commit and tag v$version${NC}"
+}
+
+# Push to GitHub and create release
+github_release() {
+    local version=$1
+    local zip_file="$PLUGIN_DIR/dist/$PLUGIN_NAME-$version.zip"
+
+    echo -e "${YELLOW}Pushing to GitHub...${NC}"
+
+    cd "$PLUGIN_DIR"
+    git push
+    git push --tags
+
+    echo -e "${YELLOW}Creating GitHub release...${NC}"
+
+    # Create release with the zip attached
+    gh release create "v$version" \
+        "$zip_file" \
+        --title "v$version" \
+        --generate-notes
+
+    echo -e "${GREEN}GitHub release v$version created!${NC}"
+}
+
 # Main execution
 main() {
     local bump_type=${1:-patch}
@@ -206,14 +242,39 @@ main() {
 
     echo ""
     echo -e "${GREEN}==============================${NC}"
-    echo -e "${GREEN}  Release $new_version complete!${NC}"
+    echo -e "${GREEN}  Build $new_version complete!${NC}"
     echo -e "${GREEN}==============================${NC}"
     echo ""
-    echo -e "Next steps:"
-    echo -e "  1. Review changes: ${YELLOW}git diff${NC}"
-    echo -e "  2. Commit: ${YELLOW}git add -A && git commit -m 'Release $new_version'${NC}"
-    echo -e "  3. Tag: ${YELLOW}git tag v$new_version${NC}"
-    echo -e "  4. Push: ${YELLOW}git push && git push --tags${NC}"
+
+    # Git commit and tag
+    read -p "Commit and tag this release? (y/n) " -n 1 -r
+    echo ""
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        git_commit_and_tag "$new_version"
+
+        # GitHub release
+        read -p "Push and create GitHub release? (y/n) " -n 1 -r
+        echo ""
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            github_release "$new_version"
+            echo ""
+            echo -e "${GREEN}==============================${NC}"
+            echo -e "${GREEN}  Release $new_version published!${NC}"
+            echo -e "${GREEN}==============================${NC}"
+        else
+            echo ""
+            echo -e "To publish later:"
+            echo -e "  1. Push: ${YELLOW}git push && git push --tags${NC}"
+            echo -e "  2. Create release: ${YELLOW}gh release create v$new_version dist/$PLUGIN_NAME-$new_version.zip --title \"v$new_version\" --generate-notes${NC}"
+        fi
+    else
+        echo -e "To complete release manually:"
+        echo -e "  1. Review changes: ${YELLOW}git diff${NC}"
+        echo -e "  2. Commit: ${YELLOW}git add -A && git commit -m 'Release $new_version'${NC}"
+        echo -e "  3. Tag: ${YELLOW}git tag v$new_version${NC}"
+        echo -e "  4. Push: ${YELLOW}git push && git push --tags${NC}"
+        echo -e "  5. Create release: ${YELLOW}gh release create v$new_version dist/$PLUGIN_NAME-$new_version.zip --title \"v$new_version\" --generate-notes${NC}"
+    fi
 }
 
 main "$@"

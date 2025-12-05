@@ -1,21 +1,18 @@
-# IDE
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
+# Build artifacts
+dist/
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
-# Dependencies
-node_modules/
-vendor/
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# Build artifacts
+# Logs
 *.log
-*.cache
 
-# Local config
-.env
-.env.local
+# Node (if ever added)
+node_modules/

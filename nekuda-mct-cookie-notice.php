@@ -3,7 +3,7 @@
  * Plugin Name: Nekuda MCT Cookie Notice
  * Plugin URI: https://nekuda.dev
  * Description: A simple, elegant cookie consent banner with customizable text via options.
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: Nekuda
  * Author URI: https://nekuda.dev
  * Text Domain: nekuda-mct-cookie-notice
@@ -396,3 +396,16 @@ class Nekuda_MCT_Cookie_Notice {
 }
 
 new Nekuda_MCT_Cookie_Notice();
+
+// GitHub auto-updates
+require_once __DIR__ . '/vendor/plugin-update-checker/plugin-update-checker.php';
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$nekudaUpdateChecker = PucFactory::buildUpdateChecker(
+    'https://github.com/binnyFriedman/nekuda-mct-cookie-notice/',
+    __FILE__,
+    'nekuda-mct-cookie-notice'
+);
+
+// Use release assets (zip files attached to GitHub releases)
+$nekudaUpdateChecker->getVcsApi()->enableReleaseAssets();
