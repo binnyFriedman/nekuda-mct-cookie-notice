@@ -1,0 +1,89 @@
+# Copyright (C) Nekuda
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Nekuda MCT Cookie Notice 1.1.0\n"
+"Report-Msgid-Bugs-To: https://nekuda.dev\n"
+"POT-Creation-Date: 2026-02-02T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: nekuda-mct-cookie-notice.php:180
+msgid "Close cookie banner"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:193
+msgid "Cookie Notice Settings"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:194
+msgid "Cookie Notice"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:267
+msgid "Text Settings"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:272
+msgid "Message"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:284
+msgid "Link Text"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:296
+msgid "Link URL"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:308
+msgid "Button Text"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:319
+msgid "Color Settings"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:324
+msgid "Background Color"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:336
+msgid "Text Color"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:348
+msgid "Link Color"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:360
+msgid "Button Background"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:368
+msgid "Use \"transparent\" or a color value"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:374
+msgid "Button Text Color"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:386
+msgid "Button Border Color"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:53
+msgid "We use cookies on this website."
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:54
+msgid "Learn more"
+msgstr ""
+
+#: nekuda-mct-cookie-notice.php:56
+msgid "Close"
+msgstr ""

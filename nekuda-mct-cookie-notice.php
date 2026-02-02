@@ -27,7 +27,7 @@ class Nekuda_MCT_Cookie_Notice {
     const OPTION_PREFIX = 'nekuda_mct_cookie_';
 
     public function __construct() {
-        add_action('init', [$this, 'load_textdomain']);
+        add_action('plugins_loaded', [$this, 'load_textdomain']);
         add_action('wp_footer', [$this, 'render_banner']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
         add_action('admin_menu', [$this, 'add_admin_menu']);
@@ -39,11 +39,10 @@ class Nekuda_MCT_Cookie_Notice {
      * Load plugin textdomain for translations
      */
     public function load_textdomain() {
-        load_plugin_textdomain(
-            'nekuda-mct-cookie-notice',
-            false,
-            dirname(plugin_basename(__FILE__)) . '/languages'
-        );
+        $locale = determine_locale();
+        $mofile = plugin_dir_path(__FILE__) . 'languages/nekuda-mct-cookie-notice-' . $locale . '.mo';
+        
+        load_textdomain('nekuda-mct-cookie-notice', $mofile);
     }
 
     /**
@@ -51,10 +50,10 @@ class Nekuda_MCT_Cookie_Notice {
      */
     private function get_defaults() {
         return [
-            'message' => 'לידיעתך, אנחנו משתמשים בעוגיות באתר זה.',
-            'link_text' => 'לפרטים נוספים',
+            'message' => __('We use cookies on this website.', 'nekuda-mct-cookie-notice'),
+            'link_text' => __('Learn more', 'nekuda-mct-cookie-notice'),
             'link_url' => '/privacy-policy',
-            'button_text' => 'סגור',
+            'button_text' => __('Close', 'nekuda-mct-cookie-notice'),
             // Colors
             'color_bg' => '#1a1a1a',
             'color_text' => '#f2f2f2',
@@ -167,16 +166,17 @@ class Nekuda_MCT_Cookie_Notice {
         $link_url = esc_url($this->get_option('link_url'));
         $button_text = esc_html($this->get_option('button_text'));
         ?>
-<div id="nekuda-mct-cookie-banner" class="nekuda-mct-cookie-banner" role="dialog"
-    aria-label="<?php esc_attr_e('Cookie Notice', 'nekuda-mct-cookie-notice'); ?>">
+<div id="nekuda-mct-cookie-banner" class="nekuda-mct-cookie-banner">
     <div class="nekuda-mct-cookie-banner__content">
-        <p class="nekuda-mct-cookie-banner__message">
-            <?php echo $message; ?>
+        <p id="nekuda-mct-cookie-message" class="nekuda-mct-cookie-banner__message">
+            <span id="nekuda-mct-cookie-text"><?php echo $message; ?></span>
             <?php if ($link_url && $link_text): ?>
-            <a href="<?php echo $link_url; ?>" class="nekuda-mct-cookie-banner__link"><?php echo $link_text; ?></a>
+            <a href="<?php echo $link_url; ?>" class="nekuda-mct-cookie-banner__link"
+                aria-describedby="nekuda-mct-cookie-text"><?php echo $link_text; ?></a>
             <?php endif; ?>
         </p>
-        <button type="button" class="nekuda-mct-cookie-banner__close" id="nekuda-mct-cookie-close">
+        <button type="button" class="nekuda-mct-cookie-banner__close" id="nekuda-mct-cookie-close"
+            aria-label="<?php esc_attr_e('Close cookie banner', 'nekuda-mct-cookie-notice'); ?>">
             <?php echo $button_text; ?>
         </button>
     </div>
@@ -267,7 +267,8 @@ class Nekuda_MCT_Cookie_Notice {
         <table class="form-table" role="presentation">
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>message"><?php _e('Message', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>message"><?php _e('Message', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>message"
@@ -278,7 +279,8 @@ class Nekuda_MCT_Cookie_Notice {
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>link_text"><?php _e('Link Text', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>link_text"><?php _e('Link Text', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>link_text"
@@ -289,7 +291,8 @@ class Nekuda_MCT_Cookie_Notice {
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>link_url"><?php _e('Link URL', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>link_url"><?php _e('Link URL', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>link_url"
@@ -300,7 +303,8 @@ class Nekuda_MCT_Cookie_Notice {
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>button_text"><?php _e('Button Text', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>button_text"><?php _e('Button Text', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>button_text"
@@ -315,68 +319,70 @@ class Nekuda_MCT_Cookie_Notice {
         <table class="form-table" role="presentation">
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>color_bg"><?php _e('Background Color', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>color_bg"><?php _e('Background Color', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>color_bg"
                         name="<?php echo self::OPTION_PREFIX; ?>color_bg"
-                        value="<?php echo esc_attr($this->get_option('color_bg')); ?>"
-                        class="nekuda-color-picker"
+                        value="<?php echo esc_attr($this->get_option('color_bg')); ?>" class="nekuda-color-picker"
                         data-default-color="<?php echo esc_attr($defaults['color_bg']); ?>">
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>color_text"><?php _e('Text Color', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>color_text"><?php _e('Text Color', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>color_text"
                         name="<?php echo self::OPTION_PREFIX; ?>color_text"
-                        value="<?php echo esc_attr($this->get_option('color_text')); ?>"
-                        class="nekuda-color-picker"
+                        value="<?php echo esc_attr($this->get_option('color_text')); ?>" class="nekuda-color-picker"
                         data-default-color="<?php echo esc_attr($defaults['color_text']); ?>">
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>color_link"><?php _e('Link Color', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>color_link"><?php _e('Link Color', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>color_link"
                         name="<?php echo self::OPTION_PREFIX; ?>color_link"
-                        value="<?php echo esc_attr($this->get_option('color_link')); ?>"
-                        class="nekuda-color-picker"
+                        value="<?php echo esc_attr($this->get_option('color_link')); ?>" class="nekuda-color-picker"
                         data-default-color="<?php echo esc_attr($defaults['color_link']); ?>">
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>color_btn_bg"><?php _e('Button Background', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>color_btn_bg"><?php _e('Button Background', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>color_btn_bg"
                         name="<?php echo self::OPTION_PREFIX; ?>color_btn_bg"
-                        value="<?php echo esc_attr($this->get_option('color_btn_bg')); ?>"
-                        class="regular-text"
+                        value="<?php echo esc_attr($this->get_option('color_btn_bg')); ?>" class="regular-text"
                         placeholder="<?php echo esc_attr($defaults['color_btn_bg']); ?>">
-                    <p class="description"><?php _e('Use "transparent" or a color value', 'nekuda-mct-cookie-notice'); ?></p>
+                    <p class="description">
+                        <?php _e('Use "transparent" or a color value', 'nekuda-mct-cookie-notice'); ?></p>
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>color_btn_text"><?php _e('Button Text Color', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>color_btn_text"><?php _e('Button Text Color', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>color_btn_text"
                         name="<?php echo self::OPTION_PREFIX; ?>color_btn_text"
-                        value="<?php echo esc_attr($this->get_option('color_btn_text')); ?>"
-                        class="nekuda-color-picker"
+                        value="<?php echo esc_attr($this->get_option('color_btn_text')); ?>" class="nekuda-color-picker"
                         data-default-color="<?php echo esc_attr($defaults['color_btn_text']); ?>">
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="<?php echo self::OPTION_PREFIX; ?>color_btn_border"><?php _e('Button Border Color', 'nekuda-mct-cookie-notice'); ?></label>
+                    <label
+                        for="<?php echo self::OPTION_PREFIX; ?>color_btn_border"><?php _e('Button Border Color', 'nekuda-mct-cookie-notice'); ?></label>
                 </th>
                 <td>
                     <input type="text" id="<?php echo self::OPTION_PREFIX; ?>color_btn_border"
@@ -408,4 +414,6 @@ $nekudaUpdateChecker = PucFactory::buildUpdateChecker(
 );
 
 // Use release assets (zip files attached to GitHub releases)
-$nekudaUpdateChecker->getVcsApi()->enableReleaseAssets();
+/** @var \YahnisElsts\PluginUpdateChecker\v5p4\Vcs\GitHubApi $api */
+$api = $nekudaUpdateChecker->getVcsApi();
+$api->enableReleaseAssets();

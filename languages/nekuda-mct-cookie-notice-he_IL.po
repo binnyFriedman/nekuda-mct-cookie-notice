@@ -1,0 +1,92 @@
+# Hebrew translations for Nekuda MCT Cookie Notice.
+# Copyright (C) Nekuda
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Nekuda MCT Cookie Notice 1.1.0\n"
+"Report-Msgid-Bugs-To: https://nekuda.dev\n"
+"POT-Creation-Date: 2026-02-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-02-02T00:00:00+00:00\n"
+"Last-Translator: Nekuda <info@nekuda.dev>\n"
+"Language-Team: Hebrew\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: nekuda-mct-cookie-notice.php:180
+msgid "Close cookie banner"
+msgstr "סגור באנר עוגיות"
+
+#: nekuda-mct-cookie-notice.php:193
+msgid "Cookie Notice Settings"
+msgstr "הגדרות הודעת עוגיות"
+
+#: nekuda-mct-cookie-notice.php:194
+msgid "Cookie Notice"
+msgstr "הודעת עוגיות"
+
+#: nekuda-mct-cookie-notice.php:267
+msgid "Text Settings"
+msgstr "הגדרות טקסט"
+
+#: nekuda-mct-cookie-notice.php:272
+msgid "Message"
+msgstr "הודעה"
+
+#: nekuda-mct-cookie-notice.php:284
+msgid "Link Text"
+msgstr "טקסט קישור"
+
+#: nekuda-mct-cookie-notice.php:296
+msgid "Link URL"
+msgstr "כתובת קישור"
+
+#: nekuda-mct-cookie-notice.php:308
+msgid "Button Text"
+msgstr "טקסט כפתור"
+
+#: nekuda-mct-cookie-notice.php:319
+msgid "Color Settings"
+msgstr "הגדרות צבע"
+
+#: nekuda-mct-cookie-notice.php:324
+msgid "Background Color"
+msgstr "צבע רקע"
+
+#: nekuda-mct-cookie-notice.php:336
+msgid "Text Color"
+msgstr "צבע טקסט"
+
+#: nekuda-mct-cookie-notice.php:348
+msgid "Link Color"
+msgstr "צבע קישור"
+
+#: nekuda-mct-cookie-notice.php:360
+msgid "Button Background"
+msgstr "רקע כפתור"
+
+#: nekuda-mct-cookie-notice.php:368
+msgid "Use \"transparent\" or a color value"
+msgstr "השתמש ב-\"transparent\" או ערך צבע"
+
+#: nekuda-mct-cookie-notice.php:374
+msgid "Button Text Color"
+msgstr "צבע טקסט כפתור"
+
+#: nekuda-mct-cookie-notice.php:386
+msgid "Button Border Color"
+msgstr "צבע מסגרת כפתור"
+
+#: nekuda-mct-cookie-notice.php:53
+msgid "We use cookies on this website."
+msgstr "לידיעתך, אנחנו משתמשים בעוגיות באתר זה."
+
+#: nekuda-mct-cookie-notice.php:54
+msgid "Learn more"
+msgstr "לפרטים נוספים"
+
+#: nekuda-mct-cookie-notice.php:56
+msgid "Close"
+msgstr "סגור"
